@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duemondi | Italia e Brasile</title>
+<meta name="description" content="Duemondi aiuta i produttori italiani a trovare clienti e distributori in Brasile: dati verificati, analisi di mercato e contatti diretti.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='16' r='8' fill='none' stroke='%231F3A5F' stroke-width='3'/%3E%3Ccircle cx='21' cy='16' r='8' fill='none' stroke='%231E6B52' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --oceano: #1F3A5F;     /* testo e marchio */
+    --profondo: #102338;   /* titoli */
+    --mata: #1E6B52;       /* unico accento */
+    --ardesia: #56636E;    /* testo secondario */
+    --nebbia: #E7ECEF;     /* fasce e linee */
+    --carta: #FFFFFF;
+    --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--carta); color: var(--oceano);
+    font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 3px solid var(--mata); outline-offset: 3px; border-radius: 2px; }
+  .colonna { width: min(100% - 2.5rem, 70rem); margin-inline: auto; }
+  .testo { max-width: 38rem; }
+
+  /* Testata */
+  header { padding: 1.75rem 0; }
+  header .colonna { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .marchio { font-family: var(--serif); font-size: 1.5rem; letter-spacing: .01em; text-decoration: none; color: var(--profondo); }
+  header nav a { text-decoration: none; font-size: .95rem; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+  /* Apertura: due righe ai due lati dell'oceano */
+  .apertura { padding: clamp(3rem, 10vw, 7.5rem) 0 clamp(3rem, 8vw, 6rem); }
+  .titolo {
+    margin: 0; font-family: var(--serif); font-weight: 400; color: var(--profondo);
+    font-size: clamp(2.6rem, 8.2vw, 6.4rem); line-height: 1.02; letter-spacing: -.012em;
+  }
+  .titolo span { display: block; }
+  .titolo .destra { text-align: right; }
+  .oceano { position: relative; margin: clamp(1.25rem, 3vw, 2rem) 0; height: 2.5rem; }
+  .oceano::before {
+    content: ""; position: absolute; left: .45rem; right: .45rem; top: .45rem; height: 1px;
+    background: var(--oceano); transform-origin: left; animation: traversata 1.4s cubic-bezier(.6,0,.2,1) .2s both;
+  }
+  .sponda { position: absolute; top: 0; font-size: .9rem; color: var(--ardesia); }
+  .sponda::before {
+    content: ""; display: block; width: .9rem; height: .9rem; border-radius: 50%;
+    background: var(--carta); border: 2px solid var(--oceano); margin-bottom: .35rem;
+  }
+  .sponda.it { left: 0; }
+  .sponda.br { right: 0; text-align: right; }
+  .sponda.br::before { margin-left: auto; border-color: var(--mata); background: var(--mata); }
+  @keyframes traversata { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) { .oceano::before { animation: none; } }
+  .sottotitolo { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.55; max-width: 36rem; margin: 0; }
+
+  /* Sezioni */
+  section { padding: clamp(3rem, 7vw, 5rem) 0; border-top: 1px solid var(--nebbia); }
+  h2 { font-family: var(--serif); font-weight: 400; color: var(--profondo); font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height: 1.15; margin: 0 0 1.5rem; }
+  p { margin: 0 0 1rem; }
+  .griglia { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 2rem 4rem; }
+  @media (max-width: 760px) { .griglia { grid-template-columns: 1fr; gap: .5rem; } }
+
+  /* Servizi: livelli crescenti di coinvolgimento */
+  .livelli { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--nebbia); }
+  .livelli li { position: relative; padding: 0 0 1.75rem 1.75rem; max-width: 38rem; }
+  .livelli li:last-child { padding-bottom: 0; }
+  .livelli li::before {
+    content: ""; position: absolute; left: -.4rem; top: .45rem; width: .8rem; height: .8rem;
+    border-radius: 50%; background: var(--carta); border: 2px solid var(--oceano);
+  }
+  .livelli li:last-child::before { background: var(--mata); border-color: var(--mata); }
+  .livelli h3 { margin: 0 0 .25rem; font-size: 1.05rem; font-weight: 650; color: var(--profondo); }
+  .livelli p { margin: 0; color: var(--ardesia); }
+  .nota { margin-top: 2rem; color: var(--ardesia); max-width: 38rem; }
+
+  .fascia { background: var(--nebbia); border-top: 0; }
+  .fascia p { max-width: 38rem; }
+
+  /* Contatto */
+  .contatto a.posta {
+    font-family: var(--serif); font-size: clamp(1.35rem, 3.6vw, 2.2rem); color: var(--profondo);
+    text-decoration: none; border-bottom: 2px solid var(--mata); overflow-wrap: anywhere;
+  }
+  footer { padding: 2rem 0 2.5rem; color: var(--ardesia); font-size: .875rem; border-top: 1px solid var(--nebbia); }
+</style>
+</head>
+<body>
+<header>
+  <div class="colonna">
+    <a class="marchio" href="#">Duemondi</a>
+    <nav><a href="#contatto">Scrivici</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="colonna apertura">
+    <h1 class="titolo"><span>Due mondi,</span><span class="destra">una sola prospettiva.</span></h1>
+    <div class="oceano" aria-hidden="true">
+      <span class="sponda it">Italia</span>
+      <span class="sponda br">Brasile</span>
+    </div>
+    <p class="sottotitolo">Duemondi aiuta i produttori italiani a trovare clienti e distributori in Brasile, con dati pubblici verificati, analisi di mercato e contatti diretti in portoghese.</p>
+  </div>
+
+  <section>
+    <div class="colonna griglia">
+      <h2>Cosa facciamo</h2>
+      <div>
+        <ol class="livelli">
+          <li><h3>Analisi di mercato</h3><p>Quante aziende brasiliane possono comprare il vostro prodotto, dove si trovano, quanto importa il Brasile e come cambiano i dazi.</p></li>
+          <li><h3>Selezione dei compratori</h3><p>Una lista breve di aziende verificate una per una: sito, linea di prodotti, dimensione.</p></li>
+          <li><h3>Primo contatto</h3><p>Presentiamo la vostra azienda ai compratori selezionati, in portoghese, e vi riportiamo chi è interessato.</p></li>
+          <li><h3>Accompagnamento</h3><p>Seguiamo le trattative con gli interessati fino all'offerta commerciale, compresa la ricerca di un partner per l'assistenza tecnica in Brasile.</p></li>
+        </ol>
+        <p class="nota">Lavoriamo anche nella direzione opposta: per chi importa, troviamo fornitori brasiliani affidabili.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fascia">
+    <div class="colonna griglia">
+      <h2>Perché il Brasile, adesso</h2>
+      <div>
+        <p>Dal 1° maggio 2026 l'accordo tra Unione europea e Mercosur è in applicazione provvisoria. I dazi brasiliani su molti prodotti europei scendono anno dopo anno: per i macchinari, partono dal 14–20% e si azzerano in dieci anni.</p>
+        <p>Chi entra nel mercato per primo arriva preparato quando i dazi saranno più bassi. Per capire quali regole valgono per il vostro prodotto, verifichiamo il codice doganale sulle fonti ufficiali.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="colonna griglia">
+      <h2>Chi siamo</h2>
+      <div class="testo">
+        <p>Per oltre un secolo il viaggio è andato dall'Italia al Brasile. Duemondi nasce dal percorso inverso: il suo fondatore, brasiliano, vive e lavora in Italia, parla entrambe le lingue e conosce le due culture d'affari.</p>
+        <p>Duemondi aiuta le imprese a passare da un mondo all'altro con dati verificati, analisi di mercato e contatti diretti.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contatto" class="contatto">
+    <div class="colonna griglia">
+      <h2>Contatto</h2>
+      <div>
+        <p class="testo">Raccontateci il vostro prodotto e il mercato che vi interessa.</p>
+        <p><a class="posta" href="mailto:gabriel.trindade@duemondi.eu">gabriel.trindade@duemondi.eu</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="colonna">© 2026 Duemondi. Questo sito non usa cookie né strumenti di tracciamento.</div>
+</footer>
+</body>
+</html>
