@@ -25,20 +25,20 @@
   }
   a { color: inherit; }
   a:focus-visible { outline: 3px solid var(--mata); outline-offset: 3px; border-radius: 2px; }
-  .colonna { width: min(100% - 2.5rem, 70rem); margin-inline: auto; }
+  .colonna { width: min(100% - 2.5rem, 62rem); margin-inline: auto; }
   .testo { max-width: 38rem; }
 
   /* Testata */
   header { padding: 1.75rem 0; }
   header .colonna { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
   .marchio { font-family: var(--serif); font-size: 1.5rem; letter-spacing: .01em; text-decoration: none; color: var(--profondo); }
-  header nav a { text-decoration: none; font-size: .95rem; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+  header nav a { text-decoration: none; font-size: 1rem; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 
   /* Apertura: due righe ai due lati dell'oceano */
-  .apertura { padding: clamp(3rem, 10vw, 7.5rem) 0 clamp(3rem, 8vw, 6rem); }
+  .apertura { padding: clamp(1.5rem, 5vw, 3.5rem) 0 clamp(1.5rem, 3vw, 2.25rem); }
   .titolo {
     margin: 0; font-family: var(--serif); font-weight: 400; color: var(--profondo);
-    font-size: clamp(2.6rem, 8.2vw, 6.4rem); line-height: 1.02; letter-spacing: -.012em;
+    font-size: clamp(2.2rem, 5.6vw, 4.25rem); line-height: 1.04; letter-spacing: -.01em;
   }
   .titolo span { display: block; }
   .titolo .destra { text-align: right; }
@@ -47,7 +47,7 @@
     content: ""; position: absolute; left: .45rem; right: .45rem; top: .45rem; height: 1px;
     background: var(--oceano); transform-origin: left; animation: traversata 1.4s cubic-bezier(.6,0,.2,1) .2s both;
   }
-  .sponda { position: absolute; top: 0; font-size: .9rem; color: var(--ardesia); }
+  .sponda { position: absolute; top: 0; font-size: 1rem; color: var(--ardesia); }
   .sponda::before {
     content: ""; display: block; width: .9rem; height: .9rem; border-radius: 50%;
     background: var(--carta); border: 2px solid var(--oceano); margin-bottom: .35rem;
@@ -57,29 +57,39 @@
   .sponda.br::before { margin-left: auto; border-color: var(--mata); background: var(--mata); }
   @keyframes traversata { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   @media (prefers-reduced-motion: reduce) { .oceano::before { animation: none; } }
-  .sottotitolo { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.55; max-width: 36rem; margin: 0; }
+  .sottotitolo { font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.55; max-width: 40rem; margin: 0; }
 
   /* Sezioni */
-  section { padding: clamp(3rem, 7vw, 5rem) 0; border-top: 1px solid var(--nebbia); }
-  h2 { font-family: var(--serif); font-weight: 400; color: var(--profondo); font-size: clamp(1.7rem, 3.4vw, 2.3rem); line-height: 1.15; margin: 0 0 1.5rem; }
+  /* Le linee e la fascia restano dentro la colonna: i lati della pagina restano puliti */
+  section > .colonna { padding: clamp(2rem, 4vw, 3rem) 0; border-top: 1px solid var(--nebbia); }
+  h2 { font-family: var(--serif); font-weight: 400; color: var(--profondo); font-size: clamp(1.45rem, 2.6vw, 1.85rem); line-height: 1.15; margin: 0 0 1rem; }
   p { margin: 0 0 1rem; }
-  .griglia { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 2rem 4rem; }
+  .griglia { display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: 1rem 3rem; }
   @media (max-width: 760px) { .griglia { grid-template-columns: 1fr; gap: .5rem; } }
 
-  /* Servizi: livelli crescenti di coinvolgimento */
-  .livelli { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--nebbia); }
-  .livelli li { position: relative; padding: 0 0 1.75rem 1.75rem; max-width: 38rem; }
-  .livelli li:last-child { padding-bottom: 0; }
+  /* Servizi: quattro livelli in fila, collegati da una linea come l'apertura */
+  .livelli {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem;
+    border-top: 1px solid var(--oceano); padding-top: 1.25rem; position: relative;
+  }
+  .livelli li { position: relative; }
   .livelli li::before {
-    content: ""; position: absolute; left: -.4rem; top: .45rem; width: .8rem; height: .8rem;
+    content: ""; position: absolute; left: 0; top: calc(-1.25rem - .45rem); width: .8rem; height: .8rem;
     border-radius: 50%; background: var(--carta); border: 2px solid var(--oceano);
   }
   .livelli li:last-child::before { background: var(--mata); border-color: var(--mata); }
-  .livelli h3 { margin: 0 0 .25rem; font-size: 1.05rem; font-weight: 650; color: var(--profondo); }
-  .livelli p { margin: 0; color: var(--ardesia); }
-  .nota { margin-top: 2rem; color: var(--ardesia); max-width: 38rem; }
+  .livelli h3 { margin: .35rem 0 .3rem; font-size: 1.0625rem; font-weight: 650; color: var(--profondo); }
+  .livelli p { margin: 0; color: var(--ardesia); font-size: .975rem; line-height: 1.5; }
+  @media (max-width: 760px) {
+    .livelli { grid-template-columns: 1fr; border-top: 0; border-left: 1px solid var(--nebbia); padding: 0 0 0 1.5rem; gap: 1.25rem; }
+    .livelli li::before { left: calc(-1.5rem - .45rem); top: .5rem; }
+    .livelli h3 { margin-top: 0; }
+  }
+  .nota { margin-top: 1.5rem; color: var(--ardesia); max-width: 44rem; }
 
-  .fascia { background: var(--nebbia); border-top: 0; }
+  .fascia > .colonna { background: var(--nebbia); border-top: 0; border-radius: 6px; padding-inline: clamp(1.25rem, 4vw, 3rem); }
+  .fascia + section > .colonna { border-top: 0; }
   .fascia p { max-width: 38rem; }
 
   /* Contatto */
@@ -87,7 +97,7 @@
     font-family: var(--serif); font-size: clamp(1.35rem, 3.6vw, 2.2rem); color: var(--profondo);
     text-decoration: none; border-bottom: 2px solid var(--mata); overflow-wrap: anywhere;
   }
-  footer { padding: 2rem 0 2.5rem; color: var(--ardesia); font-size: .875rem; border-top: 1px solid var(--nebbia); }
+  footer .colonna { padding: 2rem 0 2.5rem; color: var(--ardesia); font-size: .9375rem; border-top: 1px solid var(--nebbia); }
 </style>
 </head>
 <body>
@@ -109,17 +119,15 @@
   </div>
 
   <section>
-    <div class="colonna griglia">
+    <div class="colonna">
       <h2>Cosa facciamo</h2>
-      <div>
-        <ol class="livelli">
-          <li><h3>Analisi di mercato</h3><p>Quante aziende brasiliane possono comprare il vostro prodotto, dove si trovano, quanto importa il Brasile e come cambiano i dazi.</p></li>
-          <li><h3>Selezione dei compratori</h3><p>Una lista breve di aziende verificate una per una: sito, linea di prodotti, dimensione.</p></li>
-          <li><h3>Primo contatto</h3><p>Presentiamo la vostra azienda ai compratori selezionati, in portoghese, e vi riportiamo chi è interessato.</p></li>
-          <li><h3>Accompagnamento</h3><p>Seguiamo le trattative con gli interessati fino all'offerta commerciale, compresa la ricerca di un partner per l'assistenza tecnica in Brasile.</p></li>
-        </ol>
-        <p class="nota">Lavoriamo anche nella direzione opposta: per chi importa, troviamo fornitori brasiliani affidabili.</p>
-      </div>
+      <ol class="livelli">
+        <li><h3>Analisi di mercato</h3><p>Quanti compratori ha il vostro prodotto in Brasile, dove sono, quali dazi pagate.</p></li>
+        <li><h3>Selezione dei compratori</h3><p>Una lista breve di aziende verificate una per una.</p></li>
+        <li><h3>Primo contatto</h3><p>Vi presentiamo ai compratori, in portoghese, e vi diciamo chi è interessato.</p></li>
+        <li><h3>Accompagnamento</h3><p>Seguiamo le trattative fino all'offerta, anche per l'assistenza tecnica locale.</p></li>
+      </ol>
+      <p class="nota">Lavoriamo anche nella direzione opposta: per chi importa, troviamo fornitori brasiliani affidabili.</p>
     </div>
   </section>
 
